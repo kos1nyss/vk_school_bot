@@ -218,6 +218,7 @@ def main():
                                      random_id=params['random_id'],
                                      attachment=f'wall-{-VK_ID}_{a.post_id}',
                                      message=message)
+                    params['random_id'] = random.randint(0, 2 ** 64)
             else:
                 vk.messages.send(**params)
             db_sess.commit()
