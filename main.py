@@ -158,11 +158,9 @@ def main():
                                         ' о событиях, которые скоро пройдут в школе'
                 elif text == 'Мероприятия':
                     timestamp = datetime.now().timestamp()
-                    events = db_sess.query(Event).filter(Event.is_added.is_(True),
-                                                         Event.time_to > timestamp).all()
-                    if events:
-                        attachments = db_sess.query(Event).all()
-                    else:
+                    attachments = db_sess.query(Event).filter(Event.is_added.is_(True),
+                                                              Event.time_to > timestamp).all()
+                    if not attachments:
                         params['message'] = 'Нет доступных мероприятий'
                 elif text.startswith(PREFIX):
                     line = text.lstrip(PREFIX)
